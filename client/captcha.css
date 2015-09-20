@@ -16,7 +16,6 @@
 	display: block;
 	margin: 10px auto;
 }
-
 input[type=text].audioField {
   border: 0;
   padding:4px;
@@ -92,15 +91,11 @@ input[type=text].audioField:focus {
 	background:#EEE;
 	border-radius: 5px;
 }
-.captcha-wrapper{
-	width:95%;
-}
 .visualCaptcha-refresh-button,
 .visualCaptcha-accessibility-button {
 	width:50px;
 	display: inline-block;
 }
-
 .visualCaptcha-explanation {
 	text-align: center;
 }
