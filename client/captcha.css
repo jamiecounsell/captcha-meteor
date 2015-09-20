@@ -39,6 +39,8 @@ input[type=text].audioField:focus {
 }
 .captcha-wrapper {
     margin: 5px 0 5px 0;
+    width: 100%;
+    box-sizing: border-box;
 }
 #status-message .status {
     color:#D36161;
