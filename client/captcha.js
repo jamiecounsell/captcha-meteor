@@ -12,8 +12,9 @@ Template.statusMessage.msg = function() {
   return Session.get("statusMessage");
 }
 
+
 Template.captcha.created = function(){
-	var SERVER = window.location.origin;
+  var SERVER = window.location.origin;
   var urls = {
     start: SERVER + "/captcha/start/5"
   }
@@ -29,7 +30,7 @@ Template.captcha.created = function(){
   });
 }
 Template.captcha.rendered = function(){
-  var captchaEl = $( '#sample-captcha' ).visualCaptcha({
+  var captchaEl = $( '#visual-captcha' ).visualCaptcha({
           imgPath: '/packages/captcha/images/img/',
           captcha: {
               url: window.location.origin,
@@ -37,7 +38,6 @@ Template.captcha.rendered = function(){
           }
       } );
       VisualCaptcha.captcha = captchaEl.data( 'captcha' );
-
       
       var queryString = window.location.search;
       // Show success/error messages
@@ -49,19 +49,22 @@ VisualCaptcha.validateCaptcha = function(callback){
   Meteor.call("validateCaptcha",data, function(err,result){
     if(!err){
       if ( result === 'noCaptcha') {
-        Session.set("statusMessage", { valid: "", css: "icon-no", text: "visualCaptcha was not started!" } );
+        Session.set("statusMessage", { valid: "", css: "icon-no", text: "Uh oh! Something went wrong. Please try again." } );
       } else if ( result === 'validImage'){
-          Session.set("statusMessage", { valid: "valid",css: "icon-yes", text: "Image was valid!" } );
+          Session.set("statusMessage", { valid: "valid",css: "icon-yes", text: "Thanks! We're good to go." } );
           callback()
       } else if ( result ==='failedImage'){
-          Session.set("statusMessage", { valid: "",css: "icon-no", text: "Image was NOT valid!" } );
+          Session.set("statusMessage", { valid: "",css: "icon-no", text: "Uh oh! You picked the wrong one. Are you a robot?" } );
       } else if ( result === 'validAudio'){
-          Session.set("statusMessage", { valid: "valid",css: "icon-yes", text: "Accessibility answer was valid!" } );
+          Session.set("statusMessage", { valid: "valid",css: "icon-yes", text: "Thanks! We're good to go." } );
           callback();
       } else if ( result === 'failedAudio'){
-          Session.set("statusMessage", { valid: "",css: "icon-no", text: "Accessibility answer was NOT valid!" } );
+          Session.set("statusMessage", { valid: "",css: "icon-no", text: "Uh oh, that's not right. Are you a robot?" } );
       } else if ( result === 'failedPost'){
-          Session.set("statusMessage", { valid: "",css: "icon-no", text: "No visualCaptcha answer was given!" } );
+          Session.set("statusMessage", { valid: "",css: "icon-no", text: "Please choose one or click the speaker to listen." } );
+      }
+      if (Session.get("statusMessage").valid != "valid"){
+        VisualCaptcha.captcha.refresh()        
       }
     }
     

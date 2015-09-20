@@ -1,4 +1,5 @@
 Package.describe({
+  name: "captcha",
   summary: "VisualCaptcha better integrated with meteor"
 });
 
@@ -10,7 +11,7 @@ Package.on_use(function (api, where) {
   //api.use('server');
   api.use(['deps','underscore', 'templating',
            'handlebars', 'session', 'jquery'], 'client');
-  api.use('iron-router','server')
+  api.use('iron:router','server')
   api.add_files('lib/index.js', 'server');
   api.add_files('client/visualcaptcha.jquery.js', 'client');
   api.add_files('client/captcha.css', 'client');
