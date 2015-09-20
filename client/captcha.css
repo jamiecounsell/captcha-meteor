@@ -28,7 +28,7 @@ input[type=text].audioField {
 }
 input[type=text].audioField:focus {
   outline: none;
-  box-shadow: -5px 10px 0px -7px #4EA6EA, 5px 10px 0px -7px #4EA6EA;
+  box-shadow: -5px 10px 0px -7px #61D3C6, 5px 10px 0px -7px #61D3C6;
 }
 .visualCaptcha {
     box-sizing: border-box;
